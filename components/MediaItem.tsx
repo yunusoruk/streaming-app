@@ -4,6 +4,7 @@ import useLoadImage from '@/hooks/useLoadImage';
 import { Song } from '@/types';
 import Image from 'next/image';
 import type { FC } from 'react';
+import usePlayer from '@/hooks/usePlayer';
 
 interface MediaItemProps {
     data: Song
