@@ -15,12 +15,14 @@ const MediaItem: FC<MediaItemProps> = ({
     onClick
 }) => {
 
+    const player = usePlayer()
     const imageUrl = useLoadImage(data)
 
     const handleClick = () => {
         if (onClick) {
             return onClick(data.id)
         }
+        player.setId(data.id)
     }
 
     return (
