@@ -3,11 +3,8 @@
 import type { FC } from 'react';
 import { FaPlay } from 'react-icons/fa';
 
-interface PlayButtonProps {
-    a: string
-}
 
-const PlayButton: FC<PlayButtonProps> = ({ a }) => {
+const PlayButton= () => {
     return (
         <div>
             <button
