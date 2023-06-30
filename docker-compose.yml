@@ -1,11 +1,13 @@
-version: '3.9'
+version: "3.9"
+   
 services:
   stripe:
-    image: stripe/stripe-cli:v1.7.4
-    # In case Stripe CLI is used to perform local webhook testing, set x-djstripe-webhook-secret custom header to output of Stripe CLI.
-    command: ["listen", "-H", "x-djstripe-webhook-secret: whsec_******", "--forward-to", "http://web:8000/djstripe/webhook/"]
-    depends_on:
-      - web
+    image: stripe/stripe-cli
+    container_name: stripe-cli
+    command: "listen --api-key ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY} --device-name ${STRIPE_DEVICE_NAME} --forward-to localhost:3000/api/webhooks/"
     environment:
-      - STRIPE_API_KEY=sk_test_******
-      - STRIPE_DEVICE_NAME=Streaming-app
+      - STRIPE_API_KEY=${STRIPE_SECRET_KEY}
+    volumes:
+      - ./stripe-config:/root/.config/stripe
+  
+    
